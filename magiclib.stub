@@ -1,0 +1,18 @@
+;;;
+;;; magiclib.stub
+;;;
+
+"
+#include \"magic.h\"
+"
+
+;; The following entry is a dummy one.
+;; Replace it for your definitions.
+
+(define-cproc test-magic ()
+  (return "test_magic"))
+
+
+;; Local variables:
+;; mode: scheme
+;; end:
