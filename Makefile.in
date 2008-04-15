@@ -46,7 +46,7 @@ magic_SRCS = $(srcdir)/magic.c $(srcdir)/magiclib.stub
 all : $(TARGET)
 
 magic.$(SOEXT): $(magic_SRCS)
-	$(GAUCHE_PACKAGE) compile --verbose magic $(magic_SRCS)
+	$(GAUCHE_PACKAGE) compile --libs=-lmagic --verbose magic $(magic_SRCS)
 
 check : all
 	@rm -f test.log
@@ -73,6 +73,3 @@ distclean : clean
 
 maintainer-clean : clean
 	rm -rf $(CONFIG_GENERATED) configure VERSION
-
-test : 
-	$(GOSH) -I. test.scm

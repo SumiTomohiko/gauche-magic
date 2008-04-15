@@ -6,8 +6,7 @@
 #include \"magic.h\"
 "
 
-;; The following entry is a dummy one.
-;; Replace it for your definitions.
+(define-type <magic> "ScmMagic*" "magic")
 
 (define-cproc test-magic ()
   (return "test_magic"))
