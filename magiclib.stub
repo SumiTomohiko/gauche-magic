@@ -6,11 +6,50 @@
 #include \"magic.h\"
 "
 
-(define-type <magic> "ScmMagic*" "magic")
+(define-type <magic> "ScmMagic*" "magic" "SCM_MAGICP" "SCM_MAGIC")
 
-(define-cproc test-magic ()
-  (return "test_magic"))
+(define-cproc magic-open (flags::<fixnum>)
+  (call "Scm_MagicOpen"))
+(define-cproc magic-close (cookie::<magic>)
+  (call "Scm_MagicClose"))
+(define-cproc magic-file (cookie::<magic> filename::<const-cstring>)
+  (call "Scm_MagicFile"))
+(define-cproc magic-buffer 
+    (cookie::<magic> filename::<const-cstring> length::<fixnum>)
+  (call "Scm_MagicBuffer"))
+(define-cproc magic-error (cookie::<magic>)
+  (call "Scm_MagicError"))
+(define-cproc magic-errno (cookie::<magic>)
+  (call "Scm_MagicErrno"))
+(define-cproc magic-setflags (cookie::<magic> flags::<fixnum>)
+  (call "Scm_MagicSetFlags"))
+(define-cproc magic-check (cookie::<magic> filename::<const-cstring>)
+  (call "Scm_MagicCheck"))
+(define-cproc magic-compile (cookie::<magic> filename::<const-cstring>)
+  (call "Scm_MagicCompile"))
+(define-cproc magic-load (cookie::<magic> filename::<const-cstring>)
+  (call "Scm_MagicLoad"))
 
+(define-enum MAGIC_NONE)
+(define-enum MAGIC_DEBUG)
+(define-enum MAGIC_SYMLINK)
+(define-enum MAGIC_COMPRESS)
+(define-enum MAGIC_DEVICES)
+(define-enum MAGIC_MIME)
+(define-enum MAGIC_CONTINUE)
+(define-enum MAGIC_CHECK)
+(define-enum MAGIC_PRESERVE_ATIME)
+(define-enum MAGIC_RAW)
+(define-enum MAGIC_ERROR)
+(define-enum MAGIC_NO_CHECK_APPTYPE)
+(define-enum MAGIC_NO_CHECK_ASCII)
+(define-enum MAGIC_NO_CHECK_COMPRESS)
+(define-enum MAGIC_NO_CHECK_ELF)
+(define-enum MAGIC_NO_CHECK_FORTRAN)
+(define-enum MAGIC_NO_CHECK_SOFT)
+(define-enum MAGIC_NO_CHECK_TAR)
+(define-enum MAGIC_NO_CHECK_TOKENS)
+(define-enum MAGIC_NO_CHECK_TROFF)
 
 ;; Local variables:
 ;; mode: scheme

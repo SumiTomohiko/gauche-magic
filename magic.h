@@ -20,9 +20,18 @@ typedef struct ScmMagicRec {
 SCM_CLASS_DECL(Scm_MagicClass);
 #define SCM_CLASS_MAGIC (&Scm_MagicClass)
 #define SCM_MAGIC(obj)  ((ScmMagic*)obj)
+#define SCM_MAGICP(obj) SCM_XTYPEP(obj, SCM_CLASS_MAGIC)
 
-extern ScmObj test_magic(void);
-extern ScmObj Scm_OpenMagic();
+extern ScmObj Scm_MagicOpen(int flags);
+extern ScmObj Scm_MagicClose(ScmMagic* cookie);
+extern ScmObj Scm_MagicFile(ScmMagic* cookie, const char* filename);
+extern ScmObj Scm_MagicBuffer(ScmMagic* cookie, const char* buffer, int length);
+extern ScmObj Scm_MagicError(ScmMagic* cookie);
+extern ScmObj Scm_MagicErrno(ScmMagic* cookie);
+extern ScmObj Scm_MagicSetFlags(ScmMagic* cookie, int flags);
+extern ScmObj Scm_MagicCheck(ScmMagic* cookie, const char* filename);
+extern ScmObj Scm_MagicCompile(ScmMagic* cookie, const char* filename);
+extern ScmObj Scm_MagicLoad(ScmMagic* cookie, const char* filename);
 
 /* Epilogue */
 SCM_DECL_END
